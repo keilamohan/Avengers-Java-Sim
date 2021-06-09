@@ -1,0 +1,57 @@
+Design Text
+
+- scheduleActions(): I placed scheduleActions() in the Entity class, because the scheduled action
+seemed to be dependent upon the type of Entity that was being passed through the parameter. However,
+I considered placing it in the EventScheduler class because scheduler did play a large role in
+how the function works, however, I realized it was more due to the scheduleEvent function's critical
+role in this function.
+
+- nextPositionMiner()/nextPositionOreBlob(): I placed the nextPositionMiner() and nextPositionOreBlob()
+functions in the Entity class. I did this because the Entity class is in charge of the movement of Entities in
+the game, and the Entity entity parameter was most indicative of its nextPosition (EntityKind was utilized within
+this function as well). However, I believe that one could argue for the Point class, just because positioning
+of the entity was used a lot in this function; but the Point class is more focused on single points on the game
+board rather than movement.
+
+- moveToNotFull()/moveToFull()/moveToOreBlob()/moveEntity(): I considered placing these functions in the
+WorldModel class, because the WorldModel class is in charge of entities on the board. But, the Entity class
+is more focused on movement, and the specific position of the entity being moved controlled how the function operated.
+Thus, I ulitmately placed these functions in the Entity class, (and I also saw how much the function
+was controlled by the attributes of the Entity objects.
+
+-removePendingEvent(): I struggled on determining whether to place this function in EventScheduler or Event.
+I ended up choosing Event, because the event executed (which is based on the entity of the event) is used in the
+process of removing the Event from the scheduler, while the scheduler was more used to access the pendingEvents. The
+Event object seemed to be the focus of this function as well.
+
+- getOccupancyCell()/setOccupancyCell()/getBackgroundCell()/setBackgroundCell(): I considered placing all of these
+functions in the WorldModel class, however, resulted to placing them in the Point class. I did this because
+the placement of the y and x int variables were indicators of the single cell either being accessed or mutated.
+
+- contains(): I chose to put the contains() function in the viewport class, because although the Point p parameter is
+used in the body of the method, much of determining whether the code is true or false iss determined by the
+characteristics of the viewport object being examined in the method. So, I chose to place this function in
+the Viewport class over the Point class.
+
+- findNearest(): I placed findNearest() in WorldModel because WorldModel tracks the entities within the world and
+this was the most similar/relative to utilizing a function that took in a WorldModel object and returned the closest entity,
+ although I did consider placing it in the Entity or Point class.
+
+- findOpenAround(): I moved findOpenAround() to the WorldModel class because the WorldModel class sets up the game
+board landscape for the game, therefore, finding the open spots around the board was more applicable to WorldModel,
+although it does take into account the object Point pos and could technically be made into a non-static function
+for the Point class as well.
+
+- setBackground(): I placed setBackground() in the WorldModel class, despite feeling that it could fit in the Background
+class as well. I placed it in WorldModel because the WorldModel class does contain a myriad of different elements,
+which includes entities and the background. Since WorldModel creates the "model of the world", I believed
+that because the WorldModel object was so vital in the function, that this method, creates the backdrop for the game,
+would be more cohesive in this class over the Background class.
+
+- isOccupied(): I put isOccupied in the WorldModel class, because although it does take a Point object as a parameter,
+the WorldModel class takes a more holistic approach to the game, whereas the Point class is more specified; therefore,
+when trying to determine if a place in the game is "occupied" it seemed more fitting to be in the WorldModel class.
+
+- createAnimationAction()/createActivityAction(): Although these are create methods, and I left most of these in the
+Functions class, I added createAnimationAction() and createActivityAction() in the Action class because it called
+the Action constructor and utilized ActionKind, so it felt more applicable to this class than the Functions class.
